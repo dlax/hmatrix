@@ -26,7 +26,9 @@ module Numeric.LinearAlgebra.Tests(
 
 import Numeric.LinearAlgebra
 import Numeric.LinearAlgebra.HMatrix hiding ((<>),linearSolve)
+#if __GLASGOW_HASKELL__ >= 708
 import Numeric.LinearAlgebra.Static(L)
+#endif
 import Numeric.LinearAlgebra.Util(col,row)
 import Data.Packed
 import Numeric.LinearAlgebra.LAPACK
@@ -481,7 +483,9 @@ sparseTest = utest "sparse" (fst $ checkT (undefined :: GMatrix))
 
 --------------------------------------------------------------------------------
 
+#if __GLASGOW_HASKELL__ >= 708
 staticTest = utest "static" (fst $ checkT (undefined :: L 3 5))
+#endif
 
 --------------------------------------------------------------------------------
 
@@ -661,7 +665,9 @@ runTests n = do
         , convolutionTest
         , kroneckerTest
         , sparseTest
+#if __GLASGOW_HASKELL__ >= 708
         , staticTest
+#endif
         ]
     when (errors c + failures c > 0) exitFailure
     return ()
