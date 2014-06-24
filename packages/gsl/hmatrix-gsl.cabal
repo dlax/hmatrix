@@ -76,7 +76,7 @@ library
         if arch(x86_64)
             cc-options: -fPIC
 
-    extra-libraries: gsl
+    extra-libraries: gsl lapack blas
 
 source-repository head
     type:     git
